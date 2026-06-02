@@ -14,6 +14,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "downlevelIteration": true,
+    "ignoreDeprecations": "6.0",
     "jsx": "preserve",
     "plugins": [
       {
