@@ -1,0 +1,127 @@
+
+<style>
+.fp *{box-sizing:border-box;}
+.fp-tile:hover,.fp-card:hover{border-color:#4a90d9;}
+.fp-tile,.fp-card{transition:border-color .15s;}
+.fp-nav a:hover{color:#fff;}
+.fp-g:hover{opacity:.85;}
+</style>
+<div class="fp" style="background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:1rem;">
+<h2 class="sr-only">ITLab 一頁式網站完整版面（已移除最新消息），含導覽列、Hero 任務入口、服務、展覽、關於、成員、FAQ 與頁尾</h2>
+
+<div style="border-radius:10px;overflow:hidden;border:0.5px solid var(--color-border-tertiary);background:#f7f7f4;">
+
+  <div style="background:#e9e9e6;padding:8px 12px;display:flex;align-items:center;gap:6px;">
+    <span style="width:10px;height:10px;border-radius:50%;background:#ddd;"></span>
+    <span style="width:10px;height:10px;border-radius:50%;background:#ddd;"></span>
+    <span style="width:10px;height:10px;border-radius:50%;background:#ddd;"></span>
+    <span style="margin-left:10px;background:#fff;border-radius:5px;padding:3px 12px;font-size:11px;color:#888;">itlab.tw</span>
+  </div>
+
+  <div class="fp-nav" style="background:#0f0f0f;display:flex;align-items:center;padding:0 18px;height:54px;gap:18px;">
+    <span style="font-size:17px;font-weight:500;color:#fff;letter-spacing:-.5px;">ITLab</span>
+    <div style="display:flex;gap:16px;margin-left:6px;">
+      <a style="font-size:13px;color:#fff;border-bottom:2px solid #4a90d9;padding-bottom:2px;cursor:pointer;">服務</a>
+      <a style="font-size:13px;color:rgba(255,255,255,.65);cursor:pointer;">展覽</a>
+      <a style="font-size:13px;color:rgba(255,255,255,.65);cursor:pointer;">關於</a>
+      <a style="font-size:13px;color:rgba(255,255,255,.65);cursor:pointer;">成員</a>
+      <a style="font-size:13px;color:rgba(255,255,255,.65);cursor:pointer;">FAQ</a>
+    </div>
+    <button style="margin-left:auto;background:#4a90d9;color:#fff;border:none;border-radius:6px;padding:8px 16px;font-size:13px;font-weight:500;cursor:pointer;">器材借用 →</button>
+  </div>
+
+  <div style="padding:2rem 1.8rem 1.5rem;">
+    <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:10px;">傳播學院 · 數位創作基地</div>
+    <div style="font-size:28px;font-weight:500;color:#1a1a1a;line-height:1.15;margin-bottom:8px;">需要什麼，<br>一進來就找得到</div>
+    <div style="font-size:13px;color:#777;margin-bottom:1.3rem;max-width:340px;line-height:1.6;">器材、場地、展覽——常用功能直接放在這。</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+      <div class="fp-tile" style="background:#fff;border:2px solid #4a90d9;border-radius:10px;padding:16px 14px;cursor:pointer;"><i class="ti ti-camera" style="font-size:22px;color:#4a90d9;" aria-hidden="true"></i><div style="font-size:13px;font-weight:500;color:#1a1a1a;margin-top:8px;">器材借用</div><div style="font-size:11px;color:#888;margin-top:2px;">相機、燈具、收音</div></div>
+      <div class="fp-tile" style="background:#fff;border:1px solid #e2e2dd;border-radius:10px;padding:16px 14px;cursor:pointer;"><i class="ti ti-building" style="font-size:22px;color:#1a1a1a;" aria-hidden="true"></i><div style="font-size:13px;font-weight:500;color:#1a1a1a;margin-top:8px;">場地預約</div><div style="font-size:11px;color:#888;margin-top:2px;">電腦教室時段</div></div>
+      <div class="fp-tile" style="background:#fff;border:1px solid #e2e2dd;border-radius:10px;padding:16px 14px;cursor:pointer;"><i class="ti ti-photo" style="font-size:22px;color:#1a1a1a;" aria-hidden="true"></i><div style="font-size:13px;font-weight:500;color:#1a1a1a;margin-top:8px;">看展覽</div><div style="font-size:11px;color:#888;margin-top:2px;">歷屆作品</div></div>
+    </div>
+  </div>
+
+  <div style="border-top:0.5px solid #e2e2dd;padding:1.6rem 1.8rem;">
+    <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:1rem;"><span style="font-size:20px;font-weight:600;color:#4a90d9;opacity:.4;">01</span><span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#999;">服務項目</span></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div class="fp-card" style="background:#fff;border:1px solid #e2e2dd;border-radius:10px;padding:14px;"><i class="ti ti-camera" style="font-size:18px;color:#4a90d9;" aria-hidden="true"></i><div style="font-size:13px;font-weight:500;color:#1a1a1a;margin-top:6px;">器材借用</div><div style="font-size:11px;color:#888;margin-top:2px;">相機、燈具、收音設備</div></div>
+      <div class="fp-card" style="background:#fff;border:1px solid #e2e2dd;border-radius:10px;padding:14px;"><i class="ti ti-building" style="font-size:18px;color:#4a90d9;" aria-hidden="true"></i><div style="font-size:13px;font-weight:500;color:#1a1a1a;margin-top:6px;">場地預約</div><div style="font-size:11px;color:#888;margin-top:2px;">電腦教室開放時段</div></div>
+      <div class="fp-card" style="background:#fff;border:1px solid #e2e2dd;border-radius:10px;padding:14px;"><i class="ti ti-presentation" style="font-size:18px;color:#4a90d9;" aria-hidden="true"></i><div style="font-size:13px;font-weight:500;color:#1a1a1a;margin-top:6px;">軟體工作坊</div><div style="font-size:11px;color:#888;margin-top:2px;">設計、影像、程式培訓</div></div>
+      <div class="fp-card" style="background:#fff;border:1px solid #e2e2dd;border-radius:10px;padding:14px;"><i class="ti ti-server" style="font-size:18px;color:#4a90d9;" aria-hidden="true"></i><div style="font-size:13px;font-weight:500;color:#1a1a1a;margin-top:6px;">網路與伺服器</div><div style="font-size:11px;color:#888;margin-top:2px;">傳院設備維護</div></div>
+    </div>
+  </div>
+
+  <div style="border-top:0.5px solid #e2e2dd;padding:1.6rem 1.8rem;">
+    <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:1rem;"><span style="font-size:20px;font-weight:600;color:#4a90d9;opacity:.4;">02</span><span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#999;">展覽作品</span></div>
+    <div style="display:flex;gap:7px;margin-bottom:12px;">
+      <span style="font-size:11px;background:#4a90d9;color:#fff;padding:4px 12px;border-radius:20px;">全部</span>
+      <span style="font-size:11px;background:#fff;border:1px solid #e2e2dd;color:#888;padding:4px 12px;border-radius:20px;">2026</span>
+      <span style="font-size:11px;background:#fff;border:1px solid #e2e2dd;color:#888;padding:4px 12px;border-radius:20px;">2025</span>
+      <span style="font-size:11px;background:#fff;border:1px solid #e2e2dd;color:#888;padding:4px 12px;border-radius:20px;">大展</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+      <div class="fp-g" style="cursor:pointer;"><div style="background:#e6f1fb;border-radius:8px;height:80px;display:flex;align-items:center;justify-content:center;"><i class="ti ti-photo" style="font-size:24px;color:#85b7eb;" aria-hidden="true"></i></div><div style="font-size:12px;font-weight:500;color:#1a1a1a;margin-top:6px;">愉悅機器</div><div style="font-size:10px;color:#aaa;">2026 見習展</div></div>
+      <div class="fp-g" style="cursor:pointer;"><div style="background:#e1f5ee;border-radius:8px;height:80px;display:flex;align-items:center;justify-content:center;"><i class="ti ti-photo" style="font-size:24px;color:#5dcaa5;" aria-hidden="true"></i></div><div style="font-size:12px;font-weight:500;color:#1a1a1a;margin-top:6px;">視覺噪音</div><div style="font-size:10px;color:#aaa;">2025 大展</div></div>
+      <div class="fp-g" style="cursor:pointer;"><div style="background:#faeeda;border-radius:8px;height:80px;display:flex;align-items:center;justify-content:center;"><i class="ti ti-photo" style="font-size:24px;color:#ef9f27;" aria-hidden="true"></i></div><div style="font-size:12px;font-weight:500;color:#1a1a1a;margin-top:6px;">界線之外</div><div style="font-size:10px;color:#aaa;">2024 大展</div></div>
+    </div>
+  </div>
+
+  <div style="border-top:0.5px solid #e2e2dd;padding:1.6rem 1.8rem;">
+    <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:1rem;"><span style="font-size:20px;font-weight:600;color:#4a90d9;opacity:.4;">03</span><span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#999;">關於 ITLab</span></div>
+    <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:1rem;max-width:480px;">數位平台位於政大大勇樓三樓，是傳播學院師生的資訊服務與數位創作支援單位。助理無償服務、自發學習，並在年度大展展現成果。</div>
+    <div style="display:flex;gap:24px;">
+      <div><div style="font-size:22px;font-weight:500;color:#1a1a1a;">22<span style="color:#4a90d9;font-size:14px;">屆</span></div><div style="font-size:11px;color:#999;">平台歷史</div></div>
+      <div><div style="font-size:22px;font-weight:500;color:#1a1a1a;">3<span style="color:#4a90d9;font-size:14px;">間</span></div><div style="font-size:11px;color:#999;">電腦教室</div></div>
+      <div><div style="font-size:22px;font-weight:500;color:#1a1a1a;">168K</div><div style="font-size:11px;color:#999;">累計造訪</div></div>
+    </div>
+  </div>
+
+  <div style="border-top:0.5px solid #e2e2dd;padding:1.6rem 1.8rem;">
+    <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:1rem;"><span style="font-size:20px;font-weight:600;color:#4a90d9;opacity:.4;">04</span><span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#999;">籌辦團隊</span></div>
+    <div style="font-size:11px;color:#888;margin-bottom:8px;">行政組</div>
+    <div style="display:flex;gap:14px;margin-bottom:14px;">
+      <div style="text-align:center;"><div style="width:38px;height:38px;border-radius:8px;background:#4a90d9;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;">主</div><div style="font-size:10px;color:#888;margin-top:4px;">平台主任</div></div>
+      <div style="text-align:center;"><div style="width:38px;height:38px;border-radius:8px;background:#0f0f0f;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;">副</div><div style="font-size:10px;color:#888;margin-top:4px;">副主任</div></div>
+    </div>
+    <div style="font-size:11px;color:#888;margin-bottom:8px;">技術組</div>
+    <div style="display:flex;gap:14px;">
+      <div style="text-align:center;"><div style="width:38px;height:38px;border-radius:8px;background:#0f0f0f;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;">A</div><div style="font-size:10px;color:#888;margin-top:4px;">幹部</div></div>
+      <div style="text-align:center;"><div style="width:38px;height:38px;border-radius:8px;background:#0f0f0f;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;">B</div><div style="font-size:10px;color:#888;margin-top:4px;">幹部</div></div>
+      <div style="text-align:center;"><div style="width:38px;height:38px;border-radius:8px;background:#0f0f0f;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;">C</div><div style="font-size:10px;color:#888;margin-top:4px;">助理</div></div>
+    </div>
+  </div>
+
+  <div style="border-top:0.5px solid #e2e2dd;padding:1.6rem 1.8rem;">
+    <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:1rem;"><span style="font-size:20px;font-weight:600;color:#4a90d9;opacity:.4;">05</span><span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#999;">常見問題</span></div>
+    <div style="background:#fff;border:1px solid #e2e2dd;border-radius:10px;overflow:hidden;">
+      <div style="padding:12px 14px;border-bottom:1px solid #f0f0ed;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:13px;color:#1a1a1a;">器材借用要怎麼申請？</span><i class="ti ti-chevron-down" style="font-size:15px;color:#bbb;" aria-hidden="true"></i></div>
+      <div style="padding:12px 14px;border-bottom:1px solid #f0f0ed;background:#fafafa;"><div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:13px;color:#1a1a1a;font-weight:500;">借用有押金嗎？</span><i class="ti ti-chevron-up" style="font-size:15px;color:#4a90d9;" aria-hidden="true"></i></div><div style="font-size:12px;color:#888;margin-top:8px;line-height:1.6;">本平台器材借用不收押金，但需傳院師生身分並遵守借還規範。</div></div>
+      <div style="padding:12px 14px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:13px;color:#1a1a1a;">電腦教室開放時間？</span><i class="ti ti-chevron-down" style="font-size:15px;color:#bbb;" aria-hidden="true"></i></div>
+    </div>
+  </div>
+
+  <div style="background:#0f0f0f;padding:1.5rem 1.8rem;">
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:1rem;">
+      <div>
+        <div style="font-size:15px;font-weight:500;color:#fff;margin-bottom:6px;">ITLab 數位平台</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.6;">政大大勇樓三樓<br>itlab@nccu.edu.tw</div>
+      </div>
+      <div>
+        <div style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:8px;">歷年展覽</div>
+        <div style="display:flex;gap:10px;">
+          <span style="font-size:12px;color:rgba(255,255,255,.6);cursor:pointer;">2025</span>
+          <span style="font-size:12px;color:rgba(255,255,255,.6);cursor:pointer;">2024</span>
+          <span style="font-size:12px;color:rgba(255,255,255,.6);cursor:pointer;">2023</span>
+          <span style="font-size:12px;color:rgba(255,255,255,.6);cursor:pointer;">更多 ↗</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <i class="ti ti-brand-facebook" style="font-size:18px;color:rgba(255,255,255,.6);" aria-hidden="true"></i>
+        <i class="ti ti-brand-instagram" style="font-size:18px;color:rgba(255,255,255,.6);" aria-hidden="true"></i>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.1);padding-top:10px;font-size:10px;color:rgba(255,255,255,.35);">© 2026 國立政治大學傳播學院數位平台 · ITLab</div>
+  </div>
+
+</div>
+</div>
