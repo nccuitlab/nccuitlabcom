@@ -5,7 +5,7 @@ export const markdocConfig = fields.markdoc.createMarkdocConfig({});
 export default config({
   storage: {
     kind: 'github',
-    repo: 'jessicalinsinai/nccuitlabcom',
+    repo: 'nccuitlab/nccuitlabcom',
   },
   collections: {
     posts: collection({
