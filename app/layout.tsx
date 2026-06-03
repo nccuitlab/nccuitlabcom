@@ -1,8 +1,18 @@
-import type { ReactNode } from 'react';
+// @ts-ignore
+import "./styles.css";
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export const metadata = {
+  title: "ITLab",
+  description: "ITLab landing page",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en">
+    <html lang="zh-Hant">
       <body>{children}</body>
     </html>
   );
