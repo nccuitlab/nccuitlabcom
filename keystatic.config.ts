@@ -30,6 +30,10 @@ export default config({
           label: '主要按鈕文字',
           defaultValue: '器材借用 →',
         }),
+        primaryButtonHref: fields.text({
+          label: '主要按鈕連結',
+          defaultValue: '#services',
+        }),
       },
     }),
   },
