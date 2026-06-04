@@ -12,6 +12,33 @@ export default async function CmsTestPage() {
   const primaryButtonText = homepage?.primaryButtonText || '器材借用 →';
   const primaryButtonHref = homepage?.primaryButtonHref || '#services';
 
+  const heroCards =
+    homepage?.heroCards?.length
+      ? homepage.heroCards
+      : [
+          {
+            icon: '📷',
+            title: '器材借用',
+            description: '相機、燈具、收音',
+            href: '#services',
+            featured: true,
+          },
+          {
+            icon: '🏫',
+            title: '場地預約',
+            description: '電腦教室時段',
+            href: '#services',
+            featured: false,
+          },
+          {
+            icon: '🖼️',
+            title: '看展覽',
+            description: '歷屆作品',
+            href: '#works',
+            featured: false,
+          },
+        ];
+
   return (
     <main
       style={{
@@ -66,6 +93,7 @@ export default async function CmsTestPage() {
           >
             服務
           </a>
+
           <a
             href="#works"
             style={{
@@ -77,6 +105,7 @@ export default async function CmsTestPage() {
           >
             展覽
           </a>
+
           <a
             href="#about"
             style={{
@@ -88,6 +117,7 @@ export default async function CmsTestPage() {
           >
             關於
           </a>
+
           <a
             href="#team"
             style={{
@@ -99,6 +129,7 @@ export default async function CmsTestPage() {
           >
             成員
           </a>
+
           <a
             href="#faq"
             style={{
@@ -113,7 +144,7 @@ export default async function CmsTestPage() {
         </div>
 
         <a
-          href={primaryButtonHref}
+          href={primaryButtonHref || '#'}
           style={{
             marginLeft: 'auto',
             background: '#4a90d9',
@@ -177,88 +208,399 @@ export default async function CmsTestPage() {
             gap: '18px',
           }}
         >
-          <a
-            href="#services"
-            style={{
-              background: '#fff',
-              border: '2px solid #4a90d9',
-              borderRadius: '14px',
-              padding: '28px 24px',
-              cursor: 'pointer',
-              textDecoration: 'none',
-              color: '#1a1a1a',
-            }}
-          >
-            <div style={{ fontSize: '32px', color: '#4a90d9' }}>📷</div>
-            <div
+          {heroCards.map((card) => (
+            <a
+              key={card.title}
+              href={card.href || '#'}
               style={{
-                fontSize: '20px',
-                fontWeight: 700,
-                marginTop: '14px',
+                background: '#fff',
+                border: card.featured
+                  ? '2px solid #4a90d9'
+                  : '1px solid #e2e2dd',
+                borderRadius: '14px',
+                padding: '28px 24px',
+                cursor: 'pointer',
+                textDecoration: 'none',
+                color: '#1a1a1a',
               }}
             >
-              器材借用
-            </div>
-            <div style={{ fontSize: '15px', color: '#888', marginTop: '6px' }}>
-              相機、燈具、收音
-            </div>
-          </a>
+              <div
+                style={{
+                  fontSize: '32px',
+                  color: card.featured ? '#4a90d9' : '#1a1a1a',
+                }}
+              >
+                {card.icon}
+              </div>
 
-          <a
-            href="#services"
-            style={{
-              background: '#fff',
-              border: '1px solid #e2e2dd',
-              borderRadius: '14px',
-              padding: '28px 24px',
-              cursor: 'pointer',
-              textDecoration: 'none',
-              color: '#1a1a1a',
-            }}
-          >
-            <div style={{ fontSize: '32px' }}>🏫</div>
-            <div
-              style={{
-                fontSize: '20px',
-                fontWeight: 700,
-                marginTop: '14px',
-              }}
-            >
-              場地預約
-            </div>
-            <div style={{ fontSize: '15px', color: '#888', marginTop: '6px' }}>
-              電腦教室時段
-            </div>
-          </a>
+              <div
+                style={{
+                  fontSize: '20px',
+                  fontWeight: 700,
+                  marginTop: '14px',
+                }}
+              >
+                {card.title}
+              </div>
 
-          <a
-            href="#works"
-            style={{
-              background: '#fff',
-              border: '1px solid #e2e2dd',
-              borderRadius: '14px',
-              padding: '28px 24px',
-              cursor: 'pointer',
-              textDecoration: 'none',
-              color: '#1a1a1a',
-            }}
-          >
-            <div style={{ fontSize: '32px' }}>🖼️</div>
+              <div
+                style={{
+                  fontSize: '15px',
+                  color: '#888',
+                  marginTop: '6px',
+                }}
+              >
+                {card.description}
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section
+        id="services"
+        style={{
+          borderTop: '1px solid #e2e2dd',
+          padding: '64px 6vw',
+        }}
+      >
+        <SectionTitle number="01" label="服務項目" />
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gap: '18px',
+          }}
+        >
+          {[
+            ['📷', '器材借用', '相機、燈具、收音設備'],
+            ['🏫', '場地預約', '電腦教室開放時段'],
+            ['🎬', '軟體工作坊', '設計、影像、程式培訓'],
+            ['🖥️', '網路與伺服器', '傳院設備維護'],
+          ].map(([icon, heading, text]) => (
             <div
+              key={heading}
               style={{
-                fontSize: '20px',
-                fontWeight: 700,
-                marginTop: '14px',
+                background: '#fff',
+                border: '1px solid #e2e2dd',
+                borderRadius: '14px',
+                padding: '26px',
               }}
             >
-              看展覽
+              <div style={{ fontSize: '28px' }}>{icon}</div>
+
+              <div
+                style={{
+                  fontSize: '20px',
+                  fontWeight: 700,
+                  color: '#1a1a1a',
+                  marginTop: '10px',
+                }}
+              >
+                {heading}
+              </div>
+
+              <div
+                style={{
+                  fontSize: '15px',
+                  color: '#888',
+                  marginTop: '6px',
+                }}
+              >
+                {text}
+              </div>
             </div>
-            <div style={{ fontSize: '15px', color: '#888', marginTop: '6px' }}>
-              歷屆作品
+          ))}
+        </div>
+      </section>
+
+      <section
+        id="works"
+        style={{
+          borderTop: '1px solid #e2e2dd',
+          padding: '64px 6vw',
+        }}
+      >
+        <SectionTitle number="02" label="展覽作品" />
+
+        <div
+          style={{
+            display: 'flex',
+            gap: '10px',
+            marginBottom: '24px',
+            flexWrap: 'wrap',
+          }}
+        >
+          {['全部', '2026', '2025', '大展'].map((tag, index) => (
+            <span
+              key={tag}
+              style={{
+                fontSize: '14px',
+                background: index === 0 ? '#4a90d9' : '#fff',
+                color: index === 0 ? '#fff' : '#888',
+                border: index === 0 ? 'none' : '1px solid #e2e2dd',
+                padding: '6px 16px',
+                borderRadius: '999px',
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '18px',
+          }}
+        >
+          {[
+            ['愉悅機器', '2026 見習展', '#e6f1fb'],
+            ['視覺噪音', '2025 大展', '#e1f5ee'],
+            ['界線之外', '2024 大展', '#faeeda'],
+          ].map(([heading, year, color]) => (
+            <div key={heading}>
+              <div
+                style={{
+                  background: color,
+                  borderRadius: '14px',
+                  height: '180px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '38px',
+                }}
+              >
+                🖼️
+              </div>
+
+              <div
+                style={{
+                  fontSize: '18px',
+                  fontWeight: 700,
+                  color: '#1a1a1a',
+                  marginTop: '12px',
+                }}
+              >
+                {heading}
+              </div>
+
+              <div
+                style={{
+                  fontSize: '14px',
+                  color: '#aaa',
+                  marginTop: '4px',
+                }}
+              >
+                {year}
+              </div>
             </div>
-          </a>
+          ))}
+        </div>
+      </section>
+
+      <section
+        id="about"
+        style={{
+          borderTop: '1px solid #e2e2dd',
+          padding: '64px 6vw',
+        }}
+      >
+        <SectionTitle number="03" label="關於 ITLab" />
+
+        <p
+          style={{
+            fontSize: '18px',
+            color: '#555',
+            lineHeight: 1.8,
+            margin: '0 0 30px',
+            maxWidth: '760px',
+          }}
+        >
+          數位平台位於政大大勇樓三樓，是傳播學院師生的資訊服務與數位創作支援單位。
+          助理無償服務、自發學習，並在年度大展展現成果。
+        </p>
+
+        <div
+          style={{
+            display: 'flex',
+            gap: '46px',
+            flexWrap: 'wrap',
+          }}
+        >
+          {[
+            ['22屆', '平台歷史'],
+            ['3間', '電腦教室'],
+            ['168K', '累計造訪'],
+          ].map(([number, label]) => (
+            <div key={label}>
+              <div
+                style={{
+                  fontSize: '38px',
+                  fontWeight: 800,
+                  color: '#1a1a1a',
+                }}
+              >
+                {number}
+              </div>
+
+              <div
+                style={{
+                  fontSize: '14px',
+                  color: '#999',
+                  marginTop: '4px',
+                }}
+              >
+                {label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section
+        id="faq"
+        style={{
+          borderTop: '1px solid #e2e2dd',
+          padding: '64px 6vw',
+        }}
+      >
+        <SectionTitle number="04" label="常見問題" />
+
+        <div
+          style={{
+            background: '#fff',
+            border: '1px solid #e2e2dd',
+            borderRadius: '14px',
+            overflow: 'hidden',
+          }}
+        >
+          <details
+            style={{
+              padding: '18px 20px',
+              borderBottom: '1px solid #f0f0ed',
+            }}
+          >
+            <summary
+              style={{
+                cursor: 'pointer',
+                fontSize: '17px',
+                fontWeight: 600,
+                color: '#1a1a1a',
+              }}
+            >
+              器材借用要怎麼申請？
+            </summary>
+
+            <p
+              style={{
+                fontSize: '15px',
+                color: '#888',
+                margin: '12px 0 0',
+                lineHeight: 1.7,
+              }}
+            >
+              請依照平台公告的表單與借還規範申請。
+            </p>
+          </details>
+
+          <details
+            open
+            style={{
+              padding: '18px 20px',
+              borderBottom: '1px solid #f0f0ed',
+              background: '#fafafa',
+            }}
+          >
+            <summary
+              style={{
+                cursor: 'pointer',
+                fontSize: '17px',
+                fontWeight: 600,
+                color: '#1a1a1a',
+              }}
+            >
+              借用有押金嗎？
+            </summary>
+
+            <p
+              style={{
+                fontSize: '15px',
+                color: '#888',
+                margin: '12px 0 0',
+                lineHeight: 1.7,
+              }}
+            >
+              本平台器材借用不收押金，但需傳院師生身分並遵守借還規範。
+            </p>
+          </details>
+
+          <details
+            style={{
+              padding: '18px 20px',
+            }}
+          >
+            <summary
+              style={{
+                cursor: 'pointer',
+                fontSize: '17px',
+                fontWeight: 600,
+                color: '#1a1a1a',
+              }}
+            >
+              電腦教室開放時間？
+            </summary>
+
+            <p
+              style={{
+                fontSize: '15px',
+                color: '#888',
+                margin: '12px 0 0',
+                lineHeight: 1.7,
+              }}
+            >
+              開放時間依學期公告與課程使用狀況調整。
+            </p>
+          </details>
         </div>
       </section>
     </main>
+  );
+}
+
+function SectionTitle({ number, label }: { number: string; label: string }) {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'baseline',
+        gap: '14px',
+        marginBottom: '28px',
+      }}
+    >
+      <span
+        style={{
+          fontSize: '28px',
+          fontWeight: 800,
+          color: '#4a90d9',
+          opacity: 0.35,
+        }}
+      >
+        {number}
+      </span>
+
+      <span
+        style={{
+          fontSize: '13px',
+          letterSpacing: '2px',
+          textTransform: 'uppercase',
+          color: '#999',
+        }}
+      >
+        {label}
+      </span>
+    </div>
   );
 }
