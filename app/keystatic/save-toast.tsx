@@ -59,7 +59,10 @@ export function SaveToast() {
         const success = res.ok;
         setToast({ visible: true, success });
         setTimeout(() => setToast(t => ({ ...t, visible: false })), 3000);
-        if (success) markSaved();
+        if (success) {
+          markSaved();
+          fetch('/api/revalidate', { method: 'POST' }).catch(() => null);
+        }
       }
       return res;
     };

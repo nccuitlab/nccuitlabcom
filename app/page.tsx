@@ -1,4 +1,33 @@
-import { reader } from './reader';
+import { parse } from 'yaml';
+
+const YAML_URL =
+  'https://raw.githubusercontent.com/nccuitlab/nccuitlabcom/main/content/homepage.yaml';
+
+type HeroCard = { icon: string; title: string; description: string; href: string; featured: boolean };
+type Service = { icon: string; title: string; description: string };
+type Stat = { value: string; label: string };
+type FaqItem = { question: string; answer: string };
+
+type HomepageData = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  primaryButtonText: string;
+  primaryButtonHref: string;
+  heroCards: HeroCard[];
+  services: Service[];
+  aboutText: string;
+  aboutStats: Stat[];
+  faq: FaqItem[];
+  footerAddress: string;
+  footerEmail: string;
+};
+
+async function getData(): Promise<HomepageData> {
+  const res = await fetch(YAML_URL, { next: { tags: ['homepage'] } });
+  if (!res.ok) throw new Error('Failed to fetch homepage content');
+  return parse(await res.text()) as HomepageData;
+}
 
 // Static data for sections not yet in CMS
 const WORKS = [
@@ -20,11 +49,7 @@ const TEAM = {
 };
 
 export default async function Home() {
-  const data = await reader.singletons.homepage.read();
-
-  if (!data) {
-    return <div style={{ padding: '2rem' }}>CMS 資料讀取失敗，請確認 content/homepage.yaml 存在。</div>;
-  }
+  const data = await getData();
 
   const {
     eyebrow, title, description, primaryButtonText, primaryButtonHref,
@@ -122,13 +147,7 @@ export default async function Home() {
         <p style={{ fontSize: '18px', color: '#777', margin: '0 0 36px', maxWidth: '540px', lineHeight: 1.7 }}>
           {description}
         </p>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '18px',
-          }}
-        >
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '18px' }}>
           {heroCards.map((card, i) => (
             <a
               key={i}
@@ -141,7 +160,6 @@ export default async function Home() {
                 cursor: 'pointer',
                 textDecoration: 'none',
                 display: 'block',
-                transition: 'transform .15s, border-color .15s',
               }}
             >
               <div style={{ fontSize: '32px', color: card.featured ? '#4a90d9' : '#1a1a1a' }}>{card.icon}</div>
@@ -158,18 +176,9 @@ export default async function Home() {
           <span style={{ fontSize: '28px', fontWeight: 800, color: '#4a90d9', opacity: .35 }}>01</span>
           <span style={{ fontSize: '13px', letterSpacing: '2px', textTransform: 'uppercase', color: '#999' }}>服務項目</span>
         </div>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: '18px',
-          }}
-        >
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '18px' }}>
           {services.map((svc, i) => (
-            <div
-              key={i}
-              style={{ background: '#fff', border: '1px solid #e2e2dd', borderRadius: '14px', padding: '26px' }}
-            >
+            <div key={i} style={{ background: '#fff', border: '1px solid #e2e2dd', borderRadius: '14px', padding: '26px' }}>
               <div style={{ fontSize: '26px', color: '#4a90d9' }}>{svc.icon}</div>
               <div style={{ fontSize: '20px', fontWeight: 700, color: '#1a1a1a', marginTop: '10px' }}>{svc.title}</div>
               <div style={{ fontSize: '15px', color: '#888', marginTop: '6px' }}>{svc.description}</div>
@@ -186,35 +195,20 @@ export default async function Home() {
         </div>
         <div style={{ display: 'flex', gap: '10px', marginBottom: '24px', flexWrap: 'wrap' }}>
           {['全部', '2026', '2025', '大展'].map((tag, i) => (
-            <span
-              key={tag}
-              style={{
-                fontSize: '14px',
-                background: i === 0 ? '#4a90d9' : '#fff',
-                color: i === 0 ? '#fff' : '#888',
-                border: i === 0 ? 'none' : '1px solid #e2e2dd',
-                padding: '6px 16px',
-                borderRadius: '999px',
-              }}
-            >
-              {tag}
-            </span>
+            <span key={tag} style={{
+              fontSize: '14px',
+              background: i === 0 ? '#4a90d9' : '#fff',
+              color: i === 0 ? '#fff' : '#888',
+              border: i === 0 ? 'none' : '1px solid #e2e2dd',
+              padding: '6px 16px',
+              borderRadius: '999px',
+            }}>{tag}</span>
           ))}
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '18px' }}>
           {WORKS.map((work) => (
             <div key={work.title} style={{ cursor: 'pointer' }}>
-              <div
-                style={{
-                  background: work.bg,
-                  borderRadius: '14px',
-                  height: '180px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '38px',
-                }}
-              >
+              <div style={{ background: work.bg, borderRadius: '14px', height: '180px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '38px' }}>
                 {work.emoji}
               </div>
               <div style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginTop: '12px' }}>{work.title}</div>
@@ -258,15 +252,13 @@ export default async function Home() {
             <div style={{ display: 'flex', gap: '18px', flexWrap: 'wrap' }}>
               {group.members.map((member, i) => (
                 <div key={member.label} style={{ textAlign: 'center' }}>
-                  <div
-                    style={{
-                      width: '56px', height: '56px', borderRadius: '14px',
-                      background: group.colors[i] ?? '#0f0f0f',
-                      color: '#fff',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: '20px', fontWeight: 700,
-                    }}
-                  >
+                  <div style={{
+                    width: '56px', height: '56px', borderRadius: '14px',
+                    background: group.colors[i] ?? '#0f0f0f',
+                    color: '#fff',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: '20px', fontWeight: 700,
+                  }}>
                     {member.label}
                   </div>
                   <div style={{ fontSize: '13px', color: '#888', marginTop: '8px' }}>{member.name}</div>
@@ -285,13 +277,7 @@ export default async function Home() {
         </div>
         <div style={{ background: '#fff', border: '1px solid #e2e2dd', borderRadius: '14px', overflow: 'hidden' }}>
           {faq.map((item, i) => (
-            <details
-              key={i}
-              style={{
-                padding: '18px 20px',
-                borderBottom: i < faq.length - 1 ? '1px solid #f0f0ed' : 'none',
-              }}
-            >
+            <details key={i} style={{ padding: '18px 20px', borderBottom: i < faq.length - 1 ? '1px solid #f0f0ed' : 'none' }}>
               <summary style={{ cursor: 'pointer', fontSize: '17px', fontWeight: 600, color: '#1a1a1a' }}>
                 {item.question}
               </summary>
@@ -309,14 +295,11 @@ export default async function Home() {
           <div>
             <div style={{ fontSize: '20px', fontWeight: 700, color: '#fff', marginBottom: '10px' }}>ITLab 數位平台</div>
             <div style={{ fontSize: '14px', color: 'rgba(255,255,255,.5)', lineHeight: 1.8 }}>
-              {footerAddress}<br />
-              {footerEmail}
+              {footerAddress}<br />{footerEmail}
             </div>
           </div>
           <div>
-            <div style={{ fontSize: '12px', letterSpacing: '1px', textTransform: 'uppercase', color: 'rgba(255,255,255,.4)', marginBottom: '12px' }}>
-              歷年展覽
-            </div>
+            <div style={{ fontSize: '12px', letterSpacing: '1px', textTransform: 'uppercase', color: 'rgba(255,255,255,.4)', marginBottom: '12px' }}>歷年展覽</div>
             <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
               {['2025', '2024', '2023', '更多 ↗'].map((y) => (
                 <span key={y} style={{ fontSize: '14px', color: 'rgba(255,255,255,.6)', cursor: 'pointer' }}>{y}</span>
