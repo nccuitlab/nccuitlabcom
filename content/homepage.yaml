@@ -1,7 +1,7 @@
 eyebrow: 傳播學院 · 數位創作基地
 title: 需要什麼，一進來就找得到
-description: 器材、場地、
-primaryButtonText: 器材借用這裡 →
+description: 器材、場地、展覽——常用功能直接放在這。
+primaryButtonText: 器材借用 →
 primaryButtonHref: '#services'
 heroCards:
   - icon: 📷
@@ -32,7 +32,7 @@ services:
   - icon: 🖥️
     title: 網路與伺服器
     description: 傳院設備維護
-aboutText: 數位平台位於政大大勇樓三樓，是傳播學院師生的資訊服務與數位創作支援單位。助理無償服務、自發學習，並在年度大展
+aboutText: 數位平台位於政大大勇樓三樓，是傳播學院師生的資訊服務與數位創作支援單位。助理無償服務、自發學習，並在年度大展展現成果。
 aboutStats:
   - value: 22屆
     label: 平台歷史
@@ -47,5 +47,5 @@ faq:
     answer: 本平台器材借用不收押金，但需傳院師生身分並遵守借還規範。
   - question: 電腦教室開放時間？
     answer: 開放時間依學期公告與課程使用狀況調整。
-footerAddress: 政大大勇
+footerAddress: 政大大勇樓三樓
 footerEmail: itlab@nccu.edu.tw
