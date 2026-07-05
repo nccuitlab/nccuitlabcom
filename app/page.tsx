@@ -4,9 +4,9 @@ import { useEffect } from "react";
 export default function Home() {
   useEffect(() => {
     // FAQ accordion
-    const faqBtns = document.querySelectorAll(".faq-q");
+    const faqBtns = document.querySelectorAll<HTMLElement>(".faq-q");
     faqBtns.forEach((btn) => {
-      btn.addEventListener("click", () => btn.parentElement.classList.toggle("open"));
+      btn.addEventListener("click", () => btn.parentElement?.classList.toggle("open"));
     });
     // hamburger drawer
     const burger = document.getElementById("navBurger");
@@ -18,25 +18,29 @@ export default function Home() {
       );
     }
     // carousel
-    const track = document.getElementById("carTrack");
-    if (track) {
+    const track = document.getElementById("carTrack") as HTMLElement | null;
+    const dotsBox = document.getElementById("carDots") as HTMLElement | null;
+    if (track && dotsBox) {
       const slides = track.children.length;
-      const dotsBox = document.getElementById("carDots");
       let idx = 0;
-      let timer;
+      let timer: ReturnType<typeof setInterval>;
+      const go = (i: number) => {
+        idx = (i + slides) % slides;
+        track.style.transform = "translateX(-" + idx * 100 + "%)";
+        for (let k = 0; k < slides; k++) {
+          (dotsBox.children[k] as HTMLElement).classList.toggle("on", k === idx);
+        }
+      };
+      const reset = () => {
+        clearInterval(timer);
+        timer = setInterval(() => go(idx + 1), 5000);
+      };
       for (let i = 0; i < slides; i++) {
         const d = document.createElement("button");
         d.className = "car-dot" + (i === 0 ? " on" : "");
         d.addEventListener("click", () => { go(i); reset(); });
         dotsBox.appendChild(d);
       }
-      const dots = dotsBox.children;
-      function go(i) {
-        idx = (i + slides) % slides;
-        track.style.transform = "translateX(-" + idx * 100 + "%)";
-        for (let k = 0; k < slides; k++) dots[k].classList.toggle("on", k === idx);
-      }
-      function reset() { clearInterval(timer); timer = setInterval(() => go(idx + 1), 5000); }
       const prev = document.getElementById("carPrev");
       const next = document.getElementById("carNext");
       if (prev) prev.addEventListener("click", () => { go(idx - 1); reset(); });
