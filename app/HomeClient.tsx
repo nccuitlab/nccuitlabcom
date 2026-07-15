@@ -194,7 +194,7 @@ export default function HomeClient({ data }: { data: HomeData }) {
       <div>
         <div className="sub-label">歷屆助理訪談</div>
         <div className="interview">
-          <p className="iv-quote">「在 ITLab 學到的不只是技術⋯⋯」</p>
+          <p className="iv-quote">「在 ITLab 學到的不只是技術⋯⋯」（訪談摘句佔位）</p>
           <div className="iv-who">第 20 屆助理 · 訪談連結</div>
         </div>
         <a className="more-link" href="#">看更多訪談 →</a>
