@@ -5,39 +5,70 @@ export default async function CmsTestPage() {
   const reader = createReader(process.cwd(), keystaticConfig);
   const homepage = await reader.singletons.homepage.read();
 
-  const eyebrow = homepage?.eyebrow || '傳播學院 · 數位創作基地';
-  const title = homepage?.title || '需要什麼，一進來就找得到';
-  const description =
-    homepage?.description || '器材、場地、展覽——常用功能直接放在這。';
-  const primaryButtonText = homepage?.primaryButtonText || '器材借用 →';
-  const primaryButtonHref = homepage?.primaryButtonHref || '#services';
+  // ---------- Keystatic 首頁資料 ----------
+  const exhibitionSectionTitle =
+    homepage?.exhibitionSectionTitle ?? '展覽資訊';
 
-  const heroCards =
-    homepage?.heroCards?.length
-      ? homepage.heroCards
-      : [
-          {
-            icon: '📷',
-            title: '器材借用',
-            description: '相機、燈具、收音',
-            href: '#services',
-            featured: true,
-          },
-          {
-            icon: '🏫',
-            title: '場地預約',
-            description: '電腦教室時段',
-            href: '#services',
-            featured: false,
-          },
-          {
-            icon: '🖼️',
-            title: '看展覽',
-            description: '歷屆作品',
-            href: '#works',
-            featured: false,
-          },
-        ];
+  const currentExhibitionLabel =
+    homepage?.currentExhibitionLabel ?? '當學期展覽介紹';
+
+  const pastExhibitionLabel =
+    homepage?.pastExhibitionLabel ?? '歷屆展覽';
+
+  const pastExhibitionButtonText =
+    homepage?.pastExhibitionButtonText ?? '查看全部歷屆展覽 →';
+
+  const pastExhibitionButtonHref =
+    homepage?.pastExhibitionButtonHref ?? '/exhibitions';
+
+  const equipmentSectionTitle =
+    homepage?.equipmentSectionTitle ?? '器材借用';
+
+  const equipmentListLabel =
+    homepage?.equipmentListLabel ?? '器材清單';
+
+  const equipmentButtonText =
+    homepage?.equipmentButtonText ?? '查看器材借用規範 →';
+
+  const equipmentButtonHref =
+    homepage?.equipmentButtonHref ?? '/equipment/rules';
+
+  const aboutSectionTitle =
+    homepage?.aboutSectionTitle ?? '平台介紹';
+
+  const aboutText =
+    homepage?.aboutText ??
+    '數位平台位於政大大勇樓三樓，是傳播學院師生的資訊服務與數位創作支援單位。';
+
+  const faqSectionTitle =
+    homepage?.faqSectionTitle ?? '常見問題 FAQ';
+
+  const faqItems = homepage?.faq ?? [];
+
+  // Hero 目前沒有放進 Keystatic，先保留固定文字
+  const heroCards = [
+    {
+      icon: '📷',
+      title: '器材借用',
+      description: '相機、燈具、收音',
+      href: '#services',
+      featured: true,
+    },
+    {
+      icon: '🏫',
+      title: '場地預約',
+      description: '電腦教室時段',
+      href: '#services',
+      featured: false,
+    },
+    {
+      icon: '🖼️',
+      title: '看展覽',
+      description: '歷屆作品',
+      href: '#works',
+      featured: false,
+    },
+  ];
 
   return (
     <main
@@ -49,6 +80,7 @@ export default async function CmsTestPage() {
           '-apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif',
       }}
     >
+      {/* ---------- 導覽列 ---------- */}
       <nav
         style={{
           background: '#0f0f0f',
@@ -119,18 +151,6 @@ export default async function CmsTestPage() {
           </a>
 
           <a
-            href="#team"
-            style={{
-              fontSize: '14px',
-              color: 'rgba(255,255,255,.65)',
-              cursor: 'pointer',
-              textDecoration: 'none',
-            }}
-          >
-            成員
-          </a>
-
-          <a
             href="#faq"
             style={{
               fontSize: '14px',
@@ -144,7 +164,7 @@ export default async function CmsTestPage() {
         </div>
 
         <a
-          href={primaryButtonHref || '#'}
+          href={equipmentButtonHref}
           style={{
             marginLeft: 'auto',
             background: '#4a90d9',
@@ -158,10 +178,11 @@ export default async function CmsTestPage() {
             textDecoration: 'none',
           }}
         >
-          {primaryButtonText}
+          {equipmentButtonText}
         </a>
       </nav>
 
+      {/* ---------- Hero ---------- */}
       <section style={{ padding: '72px 6vw 44px' }}>
         <div
           style={{
@@ -172,7 +193,7 @@ export default async function CmsTestPage() {
             marginBottom: '18px',
           }}
         >
-          {eyebrow}
+          傳播學院 · 數位創作基地
         </div>
 
         <h1
@@ -186,7 +207,7 @@ export default async function CmsTestPage() {
             maxWidth: '720px',
           }}
         >
-          {title}
+          需要什麼，一進來就找得到
         </h1>
 
         <p
@@ -198,20 +219,20 @@ export default async function CmsTestPage() {
             lineHeight: 1.7,
           }}
         >
-          {description}
+          器材、場地、展覽——常用功能直接放在這。
         </p>
 
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
             gap: '18px',
           }}
         >
           {heroCards.map((card) => (
             <a
               key={card.title}
-              href={card.href || '#'}
+              href={card.href}
               style={{
                 background: '#fff',
                 border: card.featured
@@ -257,6 +278,7 @@ export default async function CmsTestPage() {
         </div>
       </section>
 
+      {/* ---------- 器材區塊 ---------- */}
       <section
         id="services"
         style={{
@@ -264,12 +286,22 @@ export default async function CmsTestPage() {
           padding: '64px 6vw',
         }}
       >
-        <SectionTitle number="01" label="服務項目" />
+        <SectionTitle number="01" label={equipmentSectionTitle} />
+
+        <p
+          style={{
+            fontSize: '16px',
+            color: '#777',
+            margin: '0 0 20px',
+          }}
+        >
+          {equipmentListLabel}
+        </p>
 
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
+            gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
             gap: '18px',
           }}
         >
@@ -313,8 +345,24 @@ export default async function CmsTestPage() {
             </div>
           ))}
         </div>
+
+        <div style={{ marginTop: '28px' }}>
+          <a
+            href={equipmentButtonHref}
+            style={{
+              display: 'inline-block',
+              color: '#4a90d9',
+              fontSize: '15px',
+              fontWeight: 600,
+              textDecoration: 'none',
+            }}
+          >
+            {equipmentButtonText}
+          </a>
+        </div>
       </section>
 
+      {/* ---------- 展覽區塊 ---------- */}
       <section
         id="works"
         style={{
@@ -322,7 +370,17 @@ export default async function CmsTestPage() {
           padding: '64px 6vw',
         }}
       >
-        <SectionTitle number="02" label="展覽作品" />
+        <SectionTitle number="02" label={exhibitionSectionTitle} />
+
+        <p
+          style={{
+            fontSize: '16px',
+            color: '#777',
+            margin: '0 0 20px',
+          }}
+        >
+          {currentExhibitionLabel}
+        </p>
 
         <div
           style={{
@@ -352,7 +410,7 @@ export default async function CmsTestPage() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
             gap: '18px',
           }}
         >
@@ -399,8 +457,33 @@ export default async function CmsTestPage() {
             </div>
           ))}
         </div>
+
+        <p
+          style={{
+            fontSize: '16px',
+            fontWeight: 600,
+            color: '#555',
+            margin: '28px 0 12px',
+          }}
+        >
+          {pastExhibitionLabel}
+        </p>
+
+        <a
+          href={pastExhibitionButtonHref}
+          style={{
+            display: 'inline-block',
+            color: '#4a90d9',
+            fontSize: '15px',
+            fontWeight: 600,
+            textDecoration: 'none',
+          }}
+        >
+          {pastExhibitionButtonText}
+        </a>
       </section>
 
+      {/* ---------- 平台介紹 ---------- */}
       <section
         id="about"
         style={{
@@ -408,7 +491,7 @@ export default async function CmsTestPage() {
           padding: '64px 6vw',
         }}
       >
-        <SectionTitle number="03" label="關於 ITLab" />
+        <SectionTitle number="03" label={aboutSectionTitle} />
 
         <p
           style={{
@@ -417,10 +500,10 @@ export default async function CmsTestPage() {
             lineHeight: 1.8,
             margin: '0 0 30px',
             maxWidth: '760px',
+            whiteSpace: 'pre-line',
           }}
         >
-          數位平台位於政大大勇樓三樓，是傳播學院師生的資訊服務與數位創作支援單位。
-          助理無償服務、自發學習，並在年度大展展現成果。
+          {aboutText}
         </p>
 
         <div
@@ -460,6 +543,7 @@ export default async function CmsTestPage() {
         </div>
       </section>
 
+      {/* ---------- FAQ ---------- */}
       <section
         id="faq"
         style={{
@@ -467,7 +551,7 @@ export default async function CmsTestPage() {
           padding: '64px 6vw',
         }}
       >
-        <SectionTitle number="04" label="常見問題" />
+        <SectionTitle number="04" label={faqSectionTitle} />
 
         <div
           style={{
@@ -477,100 +561,66 @@ export default async function CmsTestPage() {
             overflow: 'hidden',
           }}
         >
-          <details
-            style={{
-              padding: '18px 20px',
-              borderBottom: '1px solid #f0f0ed',
-            }}
-          >
-            <summary
-              style={{
-                cursor: 'pointer',
-                fontSize: '17px',
-                fontWeight: 600,
-                color: '#1a1a1a',
-              }}
-            >
-              器材借用要怎麼申請？
-            </summary>
+          {faqItems.length > 0 ? (
+            faqItems.map((item, index) => (
+              <details
+                key={`${item.question}-${index}`}
+                style={{
+                  padding: '18px 20px',
+                  borderBottom:
+                    index < faqItems.length - 1
+                      ? '1px solid #f0f0ed'
+                      : 'none',
+                }}
+              >
+                <summary
+                  style={{
+                    cursor: 'pointer',
+                    fontSize: '17px',
+                    fontWeight: 600,
+                    color: '#1a1a1a',
+                  }}
+                >
+                  {item.question || '未命名問題'}
+                </summary>
 
+                <p
+                  style={{
+                    fontSize: '15px',
+                    color: '#888',
+                    margin: '12px 0 0',
+                    lineHeight: 1.7,
+                    whiteSpace: 'pre-line',
+                  }}
+                >
+                  {item.answer || '尚未填寫答案。'}
+                </p>
+              </details>
+            ))
+          ) : (
             <p
               style={{
-                fontSize: '15px',
+                padding: '20px',
+                margin: 0,
                 color: '#888',
-                margin: '12px 0 0',
-                lineHeight: 1.7,
               }}
             >
-              請依照平台公告的表單與借還規範申請。
+              目前沒有常見問題。
             </p>
-          </details>
-
-          <details
-            open
-            style={{
-              padding: '18px 20px',
-              borderBottom: '1px solid #f0f0ed',
-              background: '#fafafa',
-            }}
-          >
-            <summary
-              style={{
-                cursor: 'pointer',
-                fontSize: '17px',
-                fontWeight: 600,
-                color: '#1a1a1a',
-              }}
-            >
-              借用有押金嗎？
-            </summary>
-
-            <p
-              style={{
-                fontSize: '15px',
-                color: '#888',
-                margin: '12px 0 0',
-                lineHeight: 1.7,
-              }}
-            >
-              本平台器材借用不收押金，但需傳院師生身分並遵守借還規範。
-            </p>
-          </details>
-
-          <details
-            style={{
-              padding: '18px 20px',
-            }}
-          >
-            <summary
-              style={{
-                cursor: 'pointer',
-                fontSize: '17px',
-                fontWeight: 600,
-                color: '#1a1a1a',
-              }}
-            >
-              電腦教室開放時間？
-            </summary>
-
-            <p
-              style={{
-                fontSize: '15px',
-                color: '#888',
-                margin: '12px 0 0',
-                lineHeight: 1.7,
-              }}
-            >
-              開放時間依學期公告與課程使用狀況調整。
-            </p>
-          </details>
+          )}
         </div>
       </section>
     </main>
   );
 }
 
-function SectionTitle({ number, label }: { number: string; label: string }) {
+function SectionTitle({
+  number,
+  label,
+}: {
+  number: string;
+  label: string;
+}) {
   return (
     <div
       style={{
