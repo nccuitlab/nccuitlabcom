@@ -4,6 +4,7 @@ import keystaticConfig from '../../keystatic.config';
 export default async function CmsTestPage() {
   const reader = createReader(process.cwd(), keystaticConfig);
   const homepage = await reader.singletons.homepage.read();
+  const faqSettings = await reader.singletons.faq.read();
 
   // ---------- Keystatic 首頁資料 ----------
   const exhibitionSectionTitle =
@@ -41,9 +42,9 @@ export default async function CmsTestPage() {
     '數位平台位於政大大勇樓三樓，是傳播學院師生的資訊服務與數位創作支援單位。';
 
   const faqSectionTitle =
-    homepage?.faqSectionTitle ?? '常見問題 FAQ';
+    faqSettings?.sectionTitle ?? '常見問題 FAQ';
 
-  const faqItems = homepage?.faq ?? [];
+  const faqItems = faqSettings?.items ?? [];
 
   // Hero 目前沒有放進 Keystatic，先保留固定文字
   const heroCards = [

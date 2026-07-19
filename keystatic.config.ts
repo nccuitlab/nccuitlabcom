@@ -18,122 +18,97 @@ export default config({
           label: '展覽區塊標題',
           defaultValue: '展覽資訊',
         }),
-
+  
         currentExhibitionLabel: fields.text({
           label: '當學期展覽小標',
           defaultValue: '當學期展覽介紹',
         }),
-
+  
         pastExhibitionLabel: fields.text({
           label: '歷屆展覽小標',
           defaultValue: '歷屆展覽',
         }),
-
+  
         pastExhibitionButtonText: fields.text({
           label: '查看歷屆展覽按鈕文字',
           defaultValue: '查看全部歷屆展覽 →',
         }),
-
+  
         pastExhibitionButtonHref: fields.text({
           label: '查看歷屆展覽按鈕連結',
           defaultValue: '/exhibitions',
         }),
-
+  
         // ---------- 器材區塊 ----------
         equipmentSectionTitle: fields.text({
           label: '器材借用區塊標題',
           defaultValue: '器材借用',
         }),
-
+  
         equipmentListLabel: fields.text({
           label: '器材清單小標',
           defaultValue: '器材清單',
         }),
-
+  
         equipmentButtonText: fields.text({
           label: '器材規範按鈕文字',
           defaultValue: '查看器材借用規範 →',
         }),
-
+  
         equipmentButtonHref: fields.text({
           label: '器材規範按鈕連結',
           defaultValue: '/equipment/rules',
         }),
-
+  
         // ---------- 平台介紹 ----------
         aboutSectionTitle: fields.text({
           label: '平台介紹區塊標題',
           defaultValue: '平台介紹',
         }),
-
+  
         aboutText: fields.text({
           label: '平台介紹文字',
           multiline: true,
           defaultValue:
             '數位平台位於政大大勇樓三樓，是傳播學院師生的資訊服務與數位創作支援單位。',
         }),
-
-        // ---------- FAQ ----------
-        faqSectionTitle: fields.text({
-          label: 'FAQ 區塊標題',
-          defaultValue: '常見問題 FAQ',
-        }),
-
-        faq: fields.array(
-          fields.object({
-            question: fields.text({
-              label: '問題',
-              defaultValue: '',
-            }),
-            answer: fields.text({
-              label: '答案',
-              multiline: true,
-              defaultValue: '',
-            }),
-          }),
-          {
-            label: '首頁 FAQ',
-            itemLabel: (props) =>
-              props.fields.question.value || 'FAQ 問題',
-          }
-        ),
-
+  
         // ---------- Footer ----------
         footerSiteName: fields.text({
           label: 'Footer 網站名稱',
           defaultValue: 'ITLab 數位平台',
         }),
-
+  
         footerAddress: fields.text({
           label: '地址',
           defaultValue: '政大大勇樓三樓',
         }),
-
+  
         footerEmail: fields.text({
           label: 'Email',
           defaultValue: 'itlab@nccu.edu.tw',
         }),
-
+  
         facebookUrl: fields.text({
           label: 'Facebook 連結',
           defaultValue: '',
         }),
-
+  
         instagramUrl: fields.text({
           label: 'Instagram 連結',
           defaultValue: '',
         }),
-
+  
         threadsUrl: fields.text({
           label: 'Threads 連結',
           defaultValue: '',
         }),
-
+  
         linkedinUrl: fields.text({
           label: 'LinkedIn 連結',
           defaultValue: '',
         }),
-
+  
         footerCopyright: fields.text({
           label: '版權文字',
           defaultValue:
@@ -141,7 +116,7 @@ export default config({
         }),
       },
     }),
-
+  
     venue: singleton({
       label: '場地借用設定',
       path: 'content/venue',
@@ -150,36 +125,68 @@ export default config({
           label: '區塊標題',
           defaultValue: '場地借用',
         }),
-
+  
         scheduleLabel: fields.text({
           label: '開放時段小標',
           defaultValue: '開放時段',
         }),
-
+  
         scheduleImage: fields.image({
           label: '當學期課表圖片',
           directory: 'public/images/venue',
           publicPath: '/images/venue/',
         }),
-
+  
         scheduleImageAlt: fields.text({
           label: '課表圖片替代文字',
           defaultValue: '當學期場地開放時段課表',
         }),
-
+  
         rulesButtonText: fields.text({
           label: '場地規範按鈕文字',
           defaultValue: '查看場地借用規範 →',
         }),
-
+  
         rulesButtonHref: fields.text({
           label: '場地規範按鈕連結',
           defaultValue: '/venue/rules',
         }),
       },
     }),
+  
+    faq: singleton({
+      label: '常見問題 FAQ',
+      path: 'content/faq',
+      schema: {
+        sectionTitle: fields.text({
+          label: 'FAQ 區塊標題',
+          defaultValue: '常見問題 FAQ',
+        }),
+  
+        items: fields.array(
+          fields.object({
+            question: fields.text({
+              label: '問題',
+              defaultValue: '',
+            }),
+  
+            answer: fields.text({
+              label: '答案',
+              multiline: true,
+              defaultValue: '',
+            }),
+          }),
+          {
+            label: '問題與答案',
+            itemLabel: (props) =>
+              props.fields.question.value || 'FAQ 問題',
+          }
+        ),
+      },
+    }),
   },
 
+  
   collections: {
     banners: collection({
       label: '首頁 Banner',
