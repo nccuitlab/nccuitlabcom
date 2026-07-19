@@ -3,20 +3,15 @@ currentExhibitionLabel: 當學期展覽介紹
 pastExhibitionLabel: 歷屆展覽
 pastExhibitionButtonText: 查看全部歷屆展覽 →
 pastExhibitionButtonHref: /exhibitions
+
 equipmentSectionTitle: 器材借用
 equipmentListLabel: 器材清單
 equipmentButtonText: 查看器材借用規範 →
 equipmentButtonHref: /equipment/rules
+
 aboutSectionTitle: 平台介紹
 aboutText: 數位平台位於政大大勇樓三樓，是傳播學院師生的資訊服務與數位創作支援單位。助理無償服務、自發學習，並在年度大展展現成果。
-faqSectionTitle: 常見問題 FAQ
-faq:
-  - question: 器材借用要怎麼申請？
-    answer: 請依照平台公告的表單與借還規範申請。
-  - question: 借用有押金嗎？
-    answer: 本平台器材借用不收押金，但需為傳院師生身分，並遵守借還規範。
-  - question: 電腦教室開放時間？
-    answer: 開放時間依學期公告與課程使用狀況調整。
+
 footerSiteName: ITLab 數位平台
 footerAddress: 政大大勇樓三樓
 footerEmail: itlab@nccu.edu.tw
