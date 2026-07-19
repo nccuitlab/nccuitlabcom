@@ -231,7 +231,7 @@ export default config({
     }),
 
     exhibitions: collection({
-      label: '展覽',
+      label: '展覽資訊',
       slugField: 'title',
       path: 'content/exhibitions/*',
       schema: {
@@ -321,13 +321,13 @@ export default config({
     }),
 
     equipmentCategories: collection({
-      label: '器材分類',
+      label: '器材類別清單',
       slugField: 'title',
       path: 'content/equipment-categories/*',
       schema: {
         title: fields.slug({
           name: {
-            label: '分類名稱',
+            label: '器材類別名稱',
           },
         }),
 
@@ -337,12 +337,13 @@ export default config({
         }),
 
         description: fields.text({
-          label: '分類說明',
+          label: '器材內容簡述',
+          description: '例如：相機、燈具',
           defaultValue: '',
         }),
 
         href: fields.text({
-          label: '分類連結',
+          label: '器材類別連結',
           defaultValue: '',
         }),
 
@@ -351,6 +352,173 @@ export default config({
           defaultValue: 0,
         }),
 
+        isVisible: fields.checkbox({
+          label: '是否顯示',
+          defaultValue: true,
+        }),
+      },
+    }),
+
+    assistants: collection({
+      label: '現任助理',
+      slugField: 'name',
+      path: 'content/assistants/*',
+      schema: {
+        name: fields.slug({
+          name: {
+            label: '助理名稱',
+          },
+        }),
+    
+        role: fields.text({
+          label: '職位',
+          defaultValue: '助理',
+        }),
+    
+        photo: fields.image({
+          label: '照片',
+          directory: 'public/images/assistants',
+          publicPath: '/images/assistants/',
+        }),
+    
+        photoAlt: fields.text({
+          label: '照片替代文字',
+          defaultValue: '',
+        }),
+    
+        introduction: fields.text({
+          label: '簡短介紹',
+          multiline: true,
+          defaultValue: '',
+        }),
+    
+        order: fields.integer({
+          label: '顯示順序',
+          defaultValue: 0,
+        }),
+    
+        isVisible: fields.checkbox({
+          label: '是否顯示',
+          defaultValue: true,
+        }),
+      },
+    }),
+
+    assistantInterviews: collection({
+      label: '歷屆助理訪談',
+      slugField: 'title',
+      path: 'content/assistant-interviews/*',
+      format: {
+        contentField: 'content',
+      },
+      schema: {
+        title: fields.slug({
+          name: {
+            label: '訪談標題',
+          },
+        }),
+    
+        interviewee: fields.text({
+          label: '受訪者',
+          defaultValue: '',
+        }),
+    
+        generation: fields.text({
+          label: '屆次',
+          description: '例如：第 20 屆助理',
+          defaultValue: '',
+        }),
+    
+        excerpt: fields.text({
+          label: '訪談摘要',
+          multiline: true,
+          defaultValue: '',
+        }),
+    
+        coverImage: fields.image({
+          label: '封面圖片',
+          directory: 'public/images/interviews',
+          publicPath: '/images/interviews/',
+        }),
+    
+        coverImageAlt: fields.text({
+          label: '封面圖片替代文字',
+          defaultValue: '',
+        }),
+    
+        content: fields.markdoc({
+          label: '完整訪談內容',
+        }),
+    
+        order: fields.integer({
+          label: '顯示順序',
+          defaultValue: 0,
+        }),
+    
+        isVisible: fields.checkbox({
+          label: '是否顯示',
+          defaultValue: true,
+        }),
+      },
+    }),
+
+    activityRecords: collection({
+      label: '課程與活動紀錄',
+      slugField: 'title',
+      path: 'content/activity-records/*',
+      format: {
+        contentField: 'content',
+      },
+      schema: {
+        title: fields.slug({
+          name: {
+            label: '課程或活動名稱',
+          },
+        }),
+    
+        term: fields.text({
+          label: '學期或時間',
+          description: '例如：2026 春',
+          defaultValue: '',
+        }),
+    
+        activityType: fields.select({
+          label: '紀錄類型',
+          options: [
+            { label: '課程', value: 'course' },
+            { label: '工作坊', value: 'workshop' },
+            { label: '講座', value: 'lecture' },
+            { label: '其他活動', value: 'other' },
+          ],
+          defaultValue: 'workshop',
+        }),
+    
+        excerpt: fields.text({
+          label: '簡短摘要',
+          multiline: true,
+          defaultValue: '',
+        }),
+    
+        coverImage: fields.image({
+          label: '封面圖片',
+          directory: 'public/images/activity-records',
+          publicPath: '/images/activity-records/',
+        }),
+    
+        coverImageAlt: fields.text({
+          label: '封面圖片替代文字',
+          defaultValue: '',
+        }),
+    
+        content: fields.markdoc({
+          label: '完整內容',
+        }),
+    
+        order: fields.integer({
+          label: '顯示順序',
+          defaultValue: 0,
+        }),
+    
         isVisible: fields.checkbox({
           label: '是否顯示',
           defaultValue: true,
